@@ -3,6 +3,11 @@
 class SchemaTools: # do not use as initilized!!!
     def istypeof(tocheck, validtype):
         return type(tocheck) is validtype
+    def isatypeof(tocheck, validtypes: list):
+        for validtype in validtypes:
+            if SchemaTools.istypeof(tocheck, validtype):
+                return True
+        return False
         
 class Schema:
     def __init__(self, schema):
