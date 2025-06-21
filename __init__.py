@@ -22,6 +22,9 @@ class SchemaTools: # do not use as initilized!!!
         if SchemaTools.istypeof(schema, int):
             return SchemaTools.Handlers.handle_int(schema, tovalidate)
         
+        if SchemaTools.istypeof(schema, bool):
+            return SchemaTools.Handlers.handle_bool(schema, tovalidate)
+        
     class Handlers:
         def handle_str(schema, tovalidate):
             if isinstance(schema, str):
@@ -34,6 +37,12 @@ class SchemaTools: # do not use as initilized!!!
                 return schema == tovalidate
             
             return SchemaTools.istypeof(tovalidate, int)
+        
+        def handle_bool(schema, tovalidate):
+            if isinstance(schema, bool):
+                return schema is tovalidate
+            
+            return SchemaTools.istypeof(tovalidate, bool)
         
         def handle_list(schema, tovalidate):
             ...
