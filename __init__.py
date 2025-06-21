@@ -80,7 +80,11 @@ class Schema:
     def check(self, tocheck):
         if self.schematools.isatypeof(tocheck, self.single_types):
             print("pycheck: Using a schema for a singular type (str, int, bool, etc.) is bloated and may be unefficient.\npycheck: Switching to istype is reccomended.")
-            
+        
+        # check if type is supported
+        if not self.schematools.isatypeof(tocheck, self.valid_types):
+            raise TypeError(f"pycheck: {tocheck} is not a valid type to check.")
+        
         return self.schematools.handle(self.schema, tocheck)
         
 
