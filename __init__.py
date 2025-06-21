@@ -1,5 +1,10 @@
 # pycheck beta v0
 
+"""
+UNFINISHED:
+i need to redo the handlers to work with ANY type instead of needing a handler for every fucking singular type.
+"""
+
 class Anything: ...
 class SchemaTools: # do not use as initilized!!!
     def gettype(tocheck):
