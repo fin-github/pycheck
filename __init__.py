@@ -6,7 +6,10 @@ class SchemaTools: # do not use as initilized!!!
         
 class Schema:
     def __init__(self, schema):
+        # statics
         self.valid_types: list = [str, int, bool, dict]
+        
+        # argument handlers
         self.schema = schema
     
     def check(self, tocheck):
