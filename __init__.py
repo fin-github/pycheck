@@ -19,12 +19,21 @@ class SchemaTools: # do not use as initilized!!!
         if SchemaTools.istypeof(schema, str):
             return SchemaTools.Handlers.handle_str(schema, tovalidate)
         
+        if SchemaTools.istypeof(schema, int):
+            return SchemaTools.Handlers.handle_int(schema, tovalidate)
+        
     class Handlers:
         def handle_str(schema, tovalidate):
             if isinstance(schema, str):
                 return schema == tovalidate
             
             return SchemaTools.istypeof(tovalidate, str)
+        
+        def handle_int(schema, tovalidate):
+            if isinstance(schema, int):
+                return schema == tovalidate
+            
+            return SchemaTools.istypeof(tovalidate, int)
         
         def handle_list(schema, tovalidate):
             ...
