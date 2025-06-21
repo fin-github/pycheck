@@ -2,13 +2,33 @@
 
 class Anything: ...
 class SchemaTools: # do not use as initilized!!!
+    def gettype(tocheck):
+        return type(tocheck)
     def istypeof(tocheck, validtype):
-        return type(tocheck) is validtype
+        return SchemaTools.gettype(tocheck) is validtype
     def isatypeof(tocheck, validtypes: list):
         for validtype in validtypes:
             if SchemaTools.istypeof(tocheck, validtype):
                 return True
         return False
+    
+    def handle(schema, tovalidate) -> bool:
+        if SchemaTools.istypeof(schema, list):
+            return SchemaTools.Handlers.handle_list(schema, tovalidate)
+        
+        if SchemaTools.istypeof(schema, str):
+            return SchemaTools.Handlers.handle_str(schema, tovalidate)
+        
+    class Handlers:
+        def handle_str(schema, tovalidate):
+            if isinstance(schema, str):
+                return schema == tovalidate
+            
+            return SchemaTools.istypeof(tovalidate, str)
+        
+        def handle_list(schema, tovalidate):
+            ...
+    
         
 class Schema:
     def __init__(self, schema):
@@ -42,6 +62,8 @@ class Schema:
     def check(self, tocheck):
         if self.schematools.isatypeof(tocheck, self.single_types):
             print("pycheck: Using a schema for a singular type (str, int, bool, etc.) is bloated and may be unefficient.\npycheck: Switching to istype is reccomended.")
+            
+        return self.schematools.handle(self.schema, tocheck)
         
 
 __all__ = ["Schema", "Anything"]
