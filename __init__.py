@@ -8,6 +8,7 @@ class Schema:
     def __init__(self, schema):
         # statics
         self.valid_types: list = [str, int, bool, dict]
+        self.schematools = SchemaTools
         
         # argument handlers
         self.schema = schema
