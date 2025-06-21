@@ -20,6 +20,7 @@ class Schema:
         self.schema = schema
     
     def check(self, tocheck):
-        ...
+        if self.schematools.isatypeof(tocheck, self.single_types):
+            print("pycheck: Using a schema for a singular type (str, int, bool, etc.) is bloated and may be unefficient.\npycheck: Switching to istype is reccomended.")
 
 __all__ = ["Schema"]
